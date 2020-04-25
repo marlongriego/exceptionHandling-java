@@ -41,21 +41,19 @@ public class Program {
 			checkOut = sdf.parse(scan.next());
 			
 			
-			Date now = new Date();
-			if (checkIn.before(now) || checkOut.before(now)) {
-				System.out.println("error in resevation: reservation dates for updates must be future dates");
-			}
+						
 			
-			else if (!checkOut.after(checkIn)){
-				System.out.println("ERROR in reservation: check-out date must be after check-in date");	
+			String error = resevation.updateDates(checkIn, checkOut);
+			if(error != null) {
+				
+				System.out.println("error in reservation " + error);
 			}	
-			
-			else {
-			resevation.updateDates(checkIn, checkOut);
-			System.out.println("resevation " + resevation);
+				else {	
+				System.out.println("resevation " + resevation);
+				}
 		}
-		}
+		
 		scan.close();
 	}
-
 }
+
